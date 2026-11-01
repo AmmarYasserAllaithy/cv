@@ -1,0 +1,104 @@
+
+\usepackage{xparse}
+
+% Custom list formatting
+\setlist[itemize]{leftmargin=18pt, rightmargin=4pt}
+
+
+% Sections formatting
+\titleformat{\section}{
+    \color{primary}\large\bfseries
+}{}{0em}{\textls[48]}[\vspace{-3pt}]
+
+% Subsection
+\titleformat{\subsection}{
+    \bfseries
+}{}{0em}{\textls[32]}[\vspace{-5pt}]
+
+
+% \newcommand{\classesList}[4]{
+%     \item\small{
+%         {#1 #2 #3 #4 \vspace{-2pt}}
+%   }
+% }
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+
+% -- Work
+
+\newcommand{\workListStart}{%
+    \begin{itemize}[leftmargin=0.0in, label={}]
+}
+
+\newcommand{\workListEnd}{
+    \end{itemize}
+}
+
+
+% -- Achievements
+
+\newcommand{\achievementsListStart}{%
+    \begin{itemize}
+}
+
+\newcommand{\achievementsListEnd}{
+    \end{itemize}\vspace{-2pt}
+}
+
+\newcommand{\achievement}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+
+% -- Headers
+
+\newcommand{\quadHeader}[4]{
+    \begin{tabular*}{1.0\textwidth}[t]{p{.8\textwidth}@{\extracolsep{\fill}}r}
+        \textbf{\textls[64]{#1}} & {\small#2}\vspace{2pt} \\
+        \textit{\small\textls[40]{#3}} & \textit{\small#4} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\tripleHeader}[3]{%
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}%
+        \textbf{\textls[50]{#1}} | \textit{\color{dimmed}\small#2} & {\small#3}%
+    \end{tabular*}\vspace{2pt}%
+}
+
+
+% -- Experience
+
+\newcommand{\experience}[5]{
+    \item
+        \quadHeader{#1}{#2}{#3}{#4}
+        % \achievementsListStart
+        {#5}
+        % \achievementsListEnd
+}
+
+\NewDocumentCommand{\keyAchievements}{o o o o o o o o o}{%
+    \achievementsListStart
+        \IfValueT{#1}{\achievement{#1}}
+        \IfValueT{#2}{\achievement{#2}}
+        \IfValueT{#3}{\achievement{#3}}
+        \IfValueT{#4}{\achievement{#4}}
+        \IfValueT{#5}{\achievement{#5}}
+        \IfValueT{#6}{\achievement{#6}}
+        \IfValueT{#7}{\achievement{#7}}
+        \IfValueT{#8}{\achievement{#8}}
+        \IfValueT{#9}{\achievement{#9}}
+    \achievementsListEnd
+}
+
+
+
+% -- Projects
+
+\newcommand{\project}[4]{
+    \tripleHeader{#1}{#2}{#3}
+    \small{#4}
+    \vspace{5pt}
+}
